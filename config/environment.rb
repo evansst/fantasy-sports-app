@@ -9,6 +9,4 @@ require_all 'app/models'
 
 
 ENV["SINATRA_ENV"] ||= 'development'
-ActiveRecord::Base.establish_connection(ENV["SINATRA_ENV"].to_sym)
-# connection_details = YAML::load(File.open('config/database.yml'))
-# ActiveRecord::Base.establish_connection(connection_details)
+ActiveRecord::Base.establish_connection(adapter: 'sqlite3', database: 'db/development.sqlite3')

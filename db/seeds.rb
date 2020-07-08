@@ -46,11 +46,15 @@ seahawks = SportsTeam.create(name: "Seattle Seahawks")
 sam = User.create(name: "Sam")
 dan = User.create(name: "Dan")
 
-sam.create_fantasy_team("Sam's Team")
-sam.fantasy_teams[0].draft_team(bills)
 
 league1 = FantasyLeague.create(name: "League 1")
 league2 = FantasyLeague.create(name: "League 2")
 league3 = FantasyLeague.create(name: "League 3")
 
 dan.join_league(league1, "Dan's Team")
+sam.join_league(league1, "Sam's Team")
+
+sam.fantasy_teams[0].draft_team(bills)
+
+
+

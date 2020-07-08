@@ -1,6 +1,6 @@
-League.delete_all
+FantasyLeague.delete_all
 User.delete_all
-Team.delete_all
+FantasyTeam.delete_all
 SportsTeam.delete_all
 
 bills = SportsTeam.create(name: "Buffalo Bills")
@@ -42,3 +42,15 @@ cardinals = SportsTeam.create(name: "Arizona Cardinals")
 rams = SportsTeam.create(name: "Los Angeles Rams")
 fortyniners = SportsTeam.create(name: "San Fransisco 49ers")
 seahawks = SportsTeam.create(name: "Seattle Seahawks")
+
+sam = User.create(name: "Sam")
+dan = User.create(name: "Dan")
+
+sam.create_fantasy_team("Sam's Team")
+sam.fantasy_teams[0].draft_team(bills)
+
+league1 = FantasyLeague.create(name: "League 1")
+league2 = FantasyLeague.create(name: "League 2")
+league3 = FantasyLeague.create(name: "League 3")
+
+dan.join_league(league1, "Dan's Team")

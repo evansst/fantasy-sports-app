@@ -12,19 +12,20 @@
 
 ActiveRecord::Schema.define(version: 2020_07_08_172716) do
 
-  create_table "leagues", force: :cascade do |t|
+  create_table "fantasy_leagues", force: :cascade do |t|
     t.string "name"
+  end
+
+  create_table "fantasy_teams", force: :cascade do |t|
+    t.string "name"
+    t.integer "user_id"
+    t.integer "fantasy_league_id"
+    t.integer "sports_team_id"
   end
 
   create_table "sports_teams", force: :cascade do |t|
     t.string "name"
-    t.integer "team_id"
-  end
-
-  create_table "teams", force: :cascade do |t|
-    t.string "name"
-    t.integer "user_id"
-    t.integer "leage_id"
+    t.integer "fantasy_team_id"
   end
 
   create_table "users", force: :cascade do |t|

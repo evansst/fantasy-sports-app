@@ -45,29 +45,29 @@ seahawks = SportsTeam.create(name: "Seattle Seahawks")
 
 SportsTeam.shuffle_rank
 
-sam = User.create(name: "Sam2")
+sam = User.create(name: "Sam")
 dan = User.create(name: "Dan")
 tori = User.create(name: "Tori")
 morgan = User.create(name: "Morgan")
 
 
 league1 = FantasyLeague.create(name: "League 1")
-league2 = FantasyLeague.create(name: "League 2")
-league3 = FantasyLeague.create(name: "League 3")
+# league2 = FantasyLeague.create(name: "League 2")
+# league3 = FantasyLeague.create(name: "League 3")
 
-dan.join_league(league1, "Dan's Team")
-sam.join_league(league1, "Sam's Team")
-league1.add_fantasy_team(tori, "Tori's Team")
-morgans_team = league1.add_fantasy_team(morgan, "Morgan's Team")
+# dan.join_league(league1, "Dan's Team")
+# sam.join_league(league1, "Sam's Team")
+# league1.add_fantasy_team(tori, "Tori's Team")
+# morgans_team = league1.add_fantasy_team(morgan, "Morgan's Team")
 
-sam.fantasy_teams[0].draft_team(bills)
-dan.fantasy_teams[0].draft_team(packers)
-tori.fantasy_teams[0].draft_team(patriots)
-morgans_team.draft_team(chargers)
+# sam.fantasy_teams[0].draft_team(bills)
+# dan.fantasy_teams[0].draft_team(packers)
+# tori.fantasy_teams[0].draft_team(patriots)
+# morgans_team.draft_team(chargers)
 
-sams_team = sam.fantasy_teams[0]
-dans_team = dan.fantasy_teams[0]
-toris_team = tori.fantasy_teams[0]
+# sams_team = sam.fantasy_teams[0]
+# dans_team = dan.fantasy_teams[0]
+# toris_team = tori.fantasy_teams[0]
 
-league1.populate_league
-league1.seed_schedule
+# league1.populate_league
+# league1.seed_schedule

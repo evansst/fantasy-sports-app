@@ -54,8 +54,7 @@ class Cli
     end
 
     def view_record
-      binding.pry
-        user_league.standings
+
     end
 
     def choose_new_team

@@ -45,11 +45,7 @@ class FantasyLeague < ActiveRecord::Base
     update(week: 1)
   end
 
-  # def self.weekly_games
-  #   all.each do |league|
-  #     league.play_weekly_games
-  #   end
-  # end
+
 
   def play_weekly_games
     SCHEDULE[week].each do |game|

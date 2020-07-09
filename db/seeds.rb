@@ -45,7 +45,7 @@ seahawks = SportsTeam.create(name: "Seattle Seahawks")
 
 SportsTeam.shuffle_rank
 
-sam = User.create(name: "Sam")
+sam = User.create(name: "Sam2")
 dan = User.create(name: "Dan")
 tori = User.create(name: "Tori")
 morgan = User.create(name: "Morgan")
@@ -61,7 +61,7 @@ league1.add_fantasy_team(tori, "Tori's Team")
 morgans_team = league1.add_fantasy_team(morgan, "Morgan's Team")
 
 sam.fantasy_teams[0].draft_team(bills)
-dan.fantasy_teams[0].draft_team(broncos)
+dan.fantasy_teams[0].draft_team(packers)
 tori.fantasy_teams[0].draft_team(patriots)
 morgans_team.draft_team(chargers)
 

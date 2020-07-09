@@ -45,11 +45,18 @@ class FantasyLeague < ActiveRecord::Base
     update(week: 1)
   end
 
+  # def self.weekly_games
+  #   all.each do |league|
+  #     league.play_weekly_games
+  #   end
+  # end
+
   def play_weekly_games
     SCHEDULE[week].each do |game|
       team1 = FantasyTeam.find_by(fantasy_league_id: id, schedule_number: game[0])
       team2 = FantasyTeam.find_by(fantasy_league_id: id, schedule_number: game[1])
-      play_a_game(team1, team2)
+      result = play_a_game(team1, team2)
+      puts result
     end
     update(week: week + 1)
     standings
@@ -61,8 +68,10 @@ class FantasyLeague < ActiveRecord::Base
 
     if sports_team1.rank < sports_team2.rank
       fantasy_team1.update(wins: fantasy_team1.wins + 1)
+      fantasy_team1.name
     else
       fantasy_team2.update(wins: fantasy_team2.wins + 1)
+      fantasy_team2.name
     end
   end
 

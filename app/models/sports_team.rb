@@ -1,5 +1,5 @@
 class SportsTeam < ActiveRecord::Base
-  belongs_to :fantasy_team
+  belongs_to :fantasy_teams
   has_many :leagues
 
   def self.shuffle_rank

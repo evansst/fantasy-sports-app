@@ -10,10 +10,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_09_170633) do
+ActiveRecord::Schema.define(version: 2020_07_09_172922) do
 
   create_table "fantasy_leagues", force: :cascade do |t|
     t.string "name"
+    t.integer "week"
   end
 
   create_table "fantasy_teams", force: :cascade do |t|

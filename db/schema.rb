@@ -20,7 +20,6 @@ ActiveRecord::Schema.define(version: 2020_07_09_141241) do
     t.string "name"
     t.integer "user_id"
     t.integer "fantasy_league_id"
-    t.integer "sports_team_id"
     t.integer "wins"
   end
 

@@ -1,5 +1,6 @@
 class SportsTeam < ActiveRecord::Base
   belongs_to :fantasy_team
+  has_many :leagues
 
   def self.shuffle_rank
     all.shuffle.reduce(1) do |i, sports_team|
@@ -11,12 +12,7 @@ class SportsTeam < ActiveRecord::Base
   end
 
   def self.list_by_rank
-    i = 1
-    list = []
-    all.each do |_|
-      list << find_by(rank: i)
-      i += 1
-    end
+    list = all.sort_by(&:rank)
     list.map do |sports_team|
       "#{sports_team.rank} - #{sports_team.name}"
     end

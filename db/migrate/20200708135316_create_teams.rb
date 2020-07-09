@@ -4,7 +4,6 @@ class CreateTeams < ActiveRecord::Migration[6.0]
       t.string :name
       t.integer :user_id
       t.integer :fantasy_league_id
-      t.integer :sports_team_id
     end
   end
 end

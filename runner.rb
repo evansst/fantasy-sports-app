@@ -9,8 +9,11 @@ app.select_a_team
 
 app.select_a_league
 
-#puts "Welcome to the Ultamate fantasy Leage!"
+app.game_options
 
+app.play_game
+
+app.view_record
 #puts name = gets.strip
 #puts "Welcome #{name}"
 

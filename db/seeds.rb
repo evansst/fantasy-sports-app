@@ -59,6 +59,7 @@ sam.join_league(league1, "Sam's Team")
 league1.add_fantasy_team(tori, "Tori's Team")
 
 sam.fantasy_teams[0].draft_team(bills)
+dan.fantasy_teams[0].draft_team(broncos)
 
 
 

@@ -4,7 +4,7 @@ class User < ActiveRecord::Base
   has_many :fantasy_leagues, through: :fantasy_teams
 
   def create_fantasy_team fantasy_team_name
-    new_fantasy_team = FantasyTeam.create(name: fantasy_team_name)
+    new_fantasy_team = FantasyTeam.create(name: fantasy_team_name, wins: 0)
     fantasy_teams << new_fantasy_team
   end
 

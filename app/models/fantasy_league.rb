@@ -11,4 +11,11 @@ class FantasyLeague < ActiveRecord::Base
     all.map(&:name)
   end
 
+  def play_a_game fantasy_team1, fantasy_team2
+    if fantasy_team1.sports_team.rank < fantasy_team2.sports_team.rank
+      fantasy_team1.wins += 1
+    else
+      fantasy_team2.wins += 1
+    end
+  end
 end

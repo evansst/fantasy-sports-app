@@ -18,7 +18,7 @@ class FantasyLeague < ActiveRecord::Base
   end
 
   def seed_schedule
-
+    
   end
 
   def populate_league

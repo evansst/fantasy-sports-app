@@ -4,8 +4,7 @@ class SportsTeam < ActiveRecord::Base
 
   def self.shuffle_rank
     all.shuffle.reduce(1) do |i, sports_team|
-      sports_team.rank = i
-      sports_team.save
+      sports_team.update(rank: i)
       i + 1
     end
     all
@@ -16,5 +15,9 @@ class SportsTeam < ActiveRecord::Base
     list.map do |sports_team|
       "#{sports_team.rank} - #{sports_team.name}"
     end
+  end
+
+  def self.list_all
+    all.map(&:name)
   end
 end

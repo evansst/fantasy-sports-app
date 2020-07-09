@@ -4,7 +4,7 @@ class FantasyLeague < ActiveRecord::Base
   has_many :users, through: :fantasy_teams
 
   SCHEDULE = [
-    [],
+    [ ],
     [[1, 8], [2, 7], [3, 6], [4, 5]],
     [[7, 1], [6, 8], [5, 2], [4, 3]],
     [[1, 6], [7, 5], [8, 4], [2, 3]],
@@ -67,6 +67,7 @@ class FantasyLeague < ActiveRecord::Base
   end
 
   def standings
+    reload
     fantasy_teams.sort { |a, b| b.wins <=> a.wins }.map do |team|
       [team.name, team.wins]
     end

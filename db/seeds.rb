@@ -69,5 +69,5 @@ sams_team = sam.fantasy_teams[0]
 dans_team = dan.fantasy_teams[0]
 toris_team = tori.fantasy_teams[0]
 
-league1.play_a_game(sams_team, dans_team)
-league1.play_a_game(toris_team, morgans_team)
+league1.populate_league
+league1.seed_schedule

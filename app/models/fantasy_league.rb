@@ -18,11 +18,9 @@ class FantasyLeague < ActiveRecord::Base
     sports_team2 = SportsTeam.find_by(id: fantasy_team2.sports_team.id)
 
     if sports_team1.rank < sports_team2.rank
-      fantasy_team1.wins += 1
-      fantasy_team1.save
+      fantasy_team1.update(wins: + 1)
     else
-      fantasy_team2.wins += 1
-      fantasy_team2.save
+      fantasy_team2.update(wins: + 1)
     end
   end
 

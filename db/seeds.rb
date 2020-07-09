@@ -43,8 +43,11 @@ rams = SportsTeam.create(name: "Los Angeles Rams")
 fortyniners = SportsTeam.create(name: "San Fransisco 49ers")
 seahawks = SportsTeam.create(name: "Seattle Seahawks")
 
+SportsTeam.shuffle_rank
+
 sam = User.create(name: "Sam")
 dan = User.create(name: "Dan")
+tori = User.create(name: "Tori")
 
 
 league1 = FantasyLeague.create(name: "League 1")
@@ -53,6 +56,7 @@ league3 = FantasyLeague.create(name: "League 3")
 
 dan.join_league(league1, "Dan's Team")
 sam.join_league(league1, "Sam's Team")
+league1.add_fantasy_team(tori, "Tori's Team")
 
 sam.fantasy_teams[0].draft_team(bills)
 

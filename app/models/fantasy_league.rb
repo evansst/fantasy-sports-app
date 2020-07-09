@@ -7,4 +7,8 @@ class FantasyLeague < ActiveRecord::Base
     fantasy_teams << new_team
   end
 
+  def self.list_all_leagues
+    all.map(&:name)
+  end
+
 end

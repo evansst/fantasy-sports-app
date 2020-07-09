@@ -1,7 +1,6 @@
 class Cli
 
 
-
     def start_game
         puts "Welcome to the Ultamate fantasy League!"
         puts "Please enter your name"
@@ -27,7 +26,7 @@ class Cli
     def draft_a_team user
         puts "Below are the are all the teams"
 
-        loop do 
+        loop do
           prompt = TTY::Prompt.new
           sports_team_names = SportsTeam.all.pluck(:name)
           user_team = prompt.select("select a team", sports_team_names)

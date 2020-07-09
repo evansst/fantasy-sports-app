@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_172716) do
+ActiveRecord::Schema.define(version: 2020_07_09_141241) do
 
   create_table "fantasy_leagues", force: :cascade do |t|
     t.string "name"
@@ -20,12 +20,13 @@ ActiveRecord::Schema.define(version: 2020_07_08_172716) do
     t.string "name"
     t.integer "user_id"
     t.integer "fantasy_league_id"
-    t.integer "sports_team_id"
+    t.integer "wins"
   end
 
   create_table "sports_teams", force: :cascade do |t|
     t.string "name"
     t.integer "fantasy_team_id"
+    t.integer "rank"
   end
 
   create_table "users", force: :cascade do |t|

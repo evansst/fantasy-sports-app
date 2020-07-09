@@ -16,4 +16,8 @@ class SportsTeam < ActiveRecord::Base
       "#{sports_team.rank} - #{sports_team.name}"
     end
   end
+
+  def self.list_all
+    all.map(&:name)
+  end
 end

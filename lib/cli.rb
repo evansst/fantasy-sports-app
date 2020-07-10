@@ -1,11 +1,14 @@
 class Cli
-  attr_accessor :users
-
+  attr_accessor :users, :drafted
+  attr_reader :league
   def initialize
     @users = []
+    @drafted = false
+    @league = FantasyLeague.find_by(name: "The One and Only")
   end
 
   PROMPT = TTY::Prompt.new
+
 
   def welcome
     font = TTY::Font.new(:standard)
@@ -19,6 +22,7 @@ class Cli
     PROMPT.select('Main Menu') do |menu|
       menu.choice 'Create a User name'
       menu.choice 'Join a League'
+      menu.choice 'See all of the teams'
       menu.choice 'Start the Draft'
       menu.choice 'Start a season'
       menu.choice 'Check the Standings'
@@ -60,14 +64,21 @@ class Cli
     user.join_league(user_league, fantasy_team_name)
   end
 
-  def start_draft
+  def draft
+    return puts 'You have already drafted!' if @drafted
+    unless PROMPT.yes?("Are you sure you're ready to draft? This cannon be undone")
+      return puts "Okay, come back when you're ready."
+    end
 
+    @users.shuffle.each { |user| draft_a_team(user) }
+    puts 'The rest of the league will be pupulated by computer players'
+    @league.populate_league
+    @users = FantasyTeam.where(fantasy_league_id: @league.id)
+    @drafted = true
   end
 
-  def draft_a_team
-    user = choose_a_user
-    return puts 'You must create a username first!' unless user
-
+  def draft_a_team user
+    puts "#{user.name}, you are on the clock!"
     puts 'Below are the are all of the available teams'
 
     sports_teams_left = SportsTeam.where(fantasy_team_id: nil).pluck(:name)
@@ -76,18 +87,11 @@ class Cli
     user.fantasy_teams[0].draft_team(user_team)
 
     puts "Congratulations, you have drafted the #{user.fantasy_teams[0].sports_team.name}!"
-
   end
 
   def start_the_season
-    puts 'Are you ready to start the season?'
-    if reply != 'yes' || reply != 'no' # if something besides y/n
-      puts 'Please answer "yes" or "no".'
-    elsif reply == 'yes'
-      #play_game
-    else reply == 'no'
-      #back_start_game
-    end
+    return puts "Okay, come back when you're ready." unless PROMPT.yes?("Are you sure you're ready to start the season?")
+
   end
 
 

@@ -13,8 +13,10 @@ loop do
     app.create_user
   when 'Join a League'
     app.join_a_league
+  when 'See all of the teams'
+    puts 'Coming soon!'
   when 'Start the Draft'
-    app.draft_a_team
+    app.draft
   when 'Start a season'
     puts 'Coming soon!'
   when 'Check the Standings'

@@ -22,6 +22,10 @@ class FantasyLeague < ActiveRecord::Base
     all.map(&:name)
   end
 
+  def list_fantasy_teams
+    FantasyTeam.where(fantasy_league_id: id)
+  end
+
   def populate_league
     teams_needed = 8 - fantasy_teams.size
     teams_needed.times do

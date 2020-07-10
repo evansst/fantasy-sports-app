@@ -59,8 +59,8 @@ class FantasyLeague < ActiveRecord::Base
   end
 
   def play_a_game fantasy_team1, fantasy_team2
-    sports_team1 = SportsTeam.find_by(id: fantasy_team1.sports_team.id)
-    sports_team2 = SportsTeam.find_by(id: fantasy_team2.sports_team.id)
+    sports_team1 = fantasy_team1.sports_team
+    sports_team2 = fantasy_team2.sports_team
 
     if sports_team1.rank < sports_team2.rank
       fantasy_team1.update(wins: fantasy_team1.wins + 1)

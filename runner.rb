@@ -9,7 +9,7 @@ user = app.start_game
 
 user = app.select_a_league(user)
 
-app.draft_a_team(user)
+user = app.draft_a_team(user)
 
 fantasy_league.populate_league
 fantasy_league.seed_schedule

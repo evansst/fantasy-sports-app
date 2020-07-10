@@ -58,8 +58,6 @@ class Cli
         show_the_league
       when 'Start the Draft'
         draft
-      # when 'Start a season'
-      #   start_the_season
       when 'Check the Standings'
         show_standings
       when 'Go to next week'
@@ -91,8 +89,7 @@ class Cli
   def league_menu
     PROMPT.select('League Menu') do |menu|
       menu.choice 'See all of the teams'
-      menu.choice 'Start the Draft'
-      # menu.choice 'Start a season'
+      menu.choice 'Start the Draft' unless @user_league.drafted
       menu.choice 'Check the Standings'
       menu.choice 'Go to next week'
       menu.choice 'Finish the Season'
@@ -101,6 +98,7 @@ class Cli
   end
 
   def show_the_league
+    @user_league.reload
     if @user_league.drafted
       @user_league.fantasy_teams.each do |team|
         puts "#{team.name}: \n   #{team.sports_team.name}"

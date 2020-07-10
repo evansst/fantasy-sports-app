@@ -237,7 +237,7 @@ class Cli
     return puts 'You must start the season!' unless @user_league.week
 
     SportsTeam.shuffle_rank
-    puts "#{@user_league.week}:"
+    puts "Week: #{@user_league.week}"
     @user_league.play_weekly_games
   end
 

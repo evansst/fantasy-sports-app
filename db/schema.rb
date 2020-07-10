@@ -15,6 +15,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_172716) do
   create_table "fantasy_leagues", force: :cascade do |t|
     t.string "name"
     t.integer "week"
+    t.boolean "drafted"
   end
 
   create_table "fantasy_teams", force: :cascade do |t|
@@ -23,11 +24,11 @@ ActiveRecord::Schema.define(version: 2020_07_08_172716) do
     t.integer "fantasy_league_id"
     t.integer "wins"
     t.integer "schedule_number"
+    t.integer "sports_team_id"
   end
 
   create_table "sports_teams", force: :cascade do |t|
     t.string "name"
-    t.integer "fantasy_team_id"
     t.integer "rank"
   end
 

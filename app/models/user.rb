@@ -12,4 +12,14 @@ class User < ActiveRecord::Base
     new_fantasy_team.update(fantasy_league_id: league.id)
     new_fantasy_team
   end
+
+  def get_leagues
+    get_teams.map do |team|
+      FantasyLeague.where(id: team.fantasy_league_id)
+    end.flatten
+  end
+
+  def get_teams
+    FantasyTeam.where(user_id: id)
+  end
 end

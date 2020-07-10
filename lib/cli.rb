@@ -3,11 +3,15 @@ class Cli
 
 
     def start_game
-        puts "Welcome to the Ultamate fantasy League!"
-        puts "Please enter your name"
+        font = TTY::Font.new(:3d)
+        puts font.write("Ultamate Fantasy Football League!")
+        puts "Please enter your name(s)"
+        loop do
         username = gets.strip
         user = User.create(name: username)
         puts "Hello #{username}!"
+        break if username == nil
+        end
         user
     end
 
@@ -39,6 +43,17 @@ class Cli
 
     end
 
+    def start_the_season
+    puts "Are you ready to start the season?"
+    if (reply !='yes' || reply != 'no' ) # if something besides y/n
+        puts ' Please answer "yes" or "no".'
+    elsif reply == 'yes' 
+#play_game
+    else reply == 'no'
+#back_start_game
+    end
+  end
+
 
 
 
@@ -54,7 +69,7 @@ class Cli
     end
 
     def view_record
-
+        Fantasy.standings.name
     end
 
     def choose_new_team

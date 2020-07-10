@@ -127,9 +127,9 @@ class Cli
     User.delete_all
     FantasyTeam.delete_all
     
-    FantasyLeague.create(name: "League 1")
-    FantasyLeague.create(name: "League 2")
-    FantasyLeague.create(name: "League 3")
+    FantasyLeague.create(name: "League of Super Best Friends")
+    FantasyLeague.create(name: "RunTime Terrors")
+    FantasyLeague.create(name: "The Adults")
     puts 'Everything Fantasy Team and User has been deleted, and the Leagues have been reset'
   end
 

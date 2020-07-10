@@ -44,9 +44,9 @@ fortyniners = SportsTeam.create(name: "San Fransisco 49ers")
 seahawks = SportsTeam.create(name: "Seattle Seahawks")
 
 SportsTeam.shuffle_rank
-league1 = FantasyLeague.create(name: "League 1")
-league2 = FantasyLeague.create(name: "League 2")
-league3 = FantasyLeague.create(name: "League 3")
+FantasyLeague.create(name: "League of Super Best Friends")
+FantasyLeague.create(name: "RunTime Terrors")
+FantasyLeague.create(name: "The Adults")
 
 # sam = User.create(name: "Sam")
 # dan = User.create(name: "Dan")

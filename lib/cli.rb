@@ -14,12 +14,16 @@ class Cli
   end
 
   def welcome
+    banner
+    launch_main_menu
+  end
+
+  def banner
     font = TTY::Font.new(:standard)
     puts font.write('Ultamate')
     puts font.write('Fantasy')
     puts font.write('Football')
     puts font.write('League!')
-    launch_main_menu
   end
 
   def launch_main_menu
@@ -52,7 +56,7 @@ class Cli
   
   def launch_league_menu
     puts "Welcome to #{@user_league.name}!"
-    loop do 
+    loop do
       case league_menu
       when 'See all of the teams'
         show_the_league
@@ -125,7 +129,10 @@ class Cli
   end
 
   def log_in
+    load_users
     @user = choose_a_user
+    return puts 'Please create a user first!' unless @user
+    
     launch_user_menu
   end
 

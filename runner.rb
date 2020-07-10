@@ -14,15 +14,17 @@ loop do
   when 'Join a League'
     app.join_a_league
   when 'See all of the teams'
-    puts 'Coming soon!'
+    app.show_the_league
   when 'Start the Draft'
     app.draft
   when 'Start a season'
-    puts 'Coming soon!'
+    app.start_the_season
   when 'Check the Standings'
-    puts 'Coming soon!'
+    app.show_standings
   when 'Go to next week'
-    puts 'Coming soon!'
+    app.weekly_games
+  when 'Finish the Season'
+    app.finish_season
   when 'Exit'
     break
   end

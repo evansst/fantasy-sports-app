@@ -5,7 +5,6 @@ class CreateTeams < ActiveRecord::Migration[6.0]
       t.integer :user_id
       t.integer :fantasy_league_id
       t.integer :wins
-      t.boolean :computer
       t.integer :schedule_number
     end
   end

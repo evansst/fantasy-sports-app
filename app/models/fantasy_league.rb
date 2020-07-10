@@ -22,6 +22,10 @@ class FantasyLeague < ActiveRecord::Base
     all.map(&:name)
   end
 
+  def list_fantasy_teams
+    FantasyTeam.where(fantasy_league_id: id)
+  end
+
   def populate_league
     teams_needed = 8 - fantasy_teams.size
     teams_needed.times do
@@ -49,11 +53,9 @@ class FantasyLeague < ActiveRecord::Base
     SCHEDULE[week].each do |game|
       team1 = FantasyTeam.find_by(fantasy_league_id: id, schedule_number: game[0])
       team2 = FantasyTeam.find_by(fantasy_league_id: id, schedule_number: game[1])
-      result = play_a_game(team1, team2)
-      puts result
+      play_a_game(team1, team2)
     end
     update(week: week + 1)
-    standings
   end
 
   def play_a_game fantasy_team1, fantasy_team2
@@ -62,10 +64,8 @@ class FantasyLeague < ActiveRecord::Base
 
     if sports_team1.rank < sports_team2.rank
       fantasy_team1.update(wins: fantasy_team1.wins + 1)
-      fantasy_team1.name
     else
       fantasy_team2.update(wins: fantasy_team2.wins + 1)
-      fantasy_team2.name
     end
   end
 

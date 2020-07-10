@@ -172,7 +172,6 @@ class Cli
     @user_league.populate_league
     @user_league.drafted = true
     @user_league.seed_schedule
-    @user_league.reload
     show_the_league
   end
 

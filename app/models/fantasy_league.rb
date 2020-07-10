@@ -59,6 +59,10 @@ class FantasyLeague < ActiveRecord::Base
   end
 
   def play_a_game fantasy_team1, fantasy_team2
+    reload
+    binding.pry if fantasy_team1.nil?
+    binding.pry if fantasy_team2.nil?
+
     sports_team1 = fantasy_team1.sports_team
     sports_team2 = fantasy_team2.sports_team
 

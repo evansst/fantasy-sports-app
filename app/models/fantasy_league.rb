@@ -31,7 +31,7 @@ class FantasyLeague < ActiveRecord::Base
     teams_needed.times do
       new_user = User.create(name: Faker::FunnyName.name)
       new_team = add_fantasy_team(new_user, Faker::Team.creature.capitalize)
-      new_team.update(computer: true)
+      new_user.update(computer: true)
 
       loop do
         break if new_team.draft_team(SportsTeam.all[rand(0..31)])
@@ -64,8 +64,10 @@ class FantasyLeague < ActiveRecord::Base
 
     if sports_team1.rank < sports_team2.rank
       fantasy_team1.update(wins: fantasy_team1.wins + 1)
+      puts "#{fantasy_team1.name} beat #{fantasy_team2.name}!"
     else
       fantasy_team2.update(wins: fantasy_team2.wins + 1)
+      puts "#{fantasy_team2.name} beat #{fantasy_team1.name}!"
     end
   end
 

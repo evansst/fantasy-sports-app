@@ -5,6 +5,7 @@ class Cli
     @users = []
     @drafted = false
     @league = FantasyLeague.find_by(name: "The One and Only")
+    @league.reload
   end
 
   PROMPT = TTY::Prompt.new
@@ -27,6 +28,7 @@ class Cli
       menu.choice 'Start a season'
       menu.choice 'Check the Standings'
       menu.choice 'Go to next week'
+      menu.choice 'Finish the Season'
       menu.choice 'Exit'
     end
   end
@@ -53,7 +55,7 @@ class Cli
   def choose_a_user
     return nil if @users.empty?
 
-    users = User.all.pluck(:name)
+    users = User.where(computer: nil).pluck(:name)
     user = PROMPT.select('Which user?', users)
     User.find_by(name: user)
   end
@@ -97,8 +99,31 @@ class Cli
   end
 
   def start_the_season
-    return puts "Okay, come back when you're ready." unless PROMPT.yes?("Are you sure you're ready to start the season?")
+    return 'You have to draft first!' unless @drafted
 
+    @league.seed_schedule
+    puts 'The schedule is out!'
+  end
+
+  def weekly_games
+    return puts 'The season is over!' if @league.week == 8
+    return puts 'You must start the season!' unless @league.week
+
+    SportsTeam.shuffle_rank
+    @league.play_weekly_games
+  end
+
+  def finish_season
+    while weekly_games
+      weekly_games
+    end
+  end
+
+  def show_standings
+    @league.standings.reduce(1) do |rank, team|
+      puts "#{rank}: #{team[0]} - #{team[1]} wins"
+      rank + 1
+    end
   end
 
 

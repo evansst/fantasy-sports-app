@@ -22,7 +22,6 @@ ActiveRecord::Schema.define(version: 2020_07_08_172716) do
     t.integer "user_id"
     t.integer "fantasy_league_id"
     t.integer "wins"
-    t.boolean "computer"
     t.integer "schedule_number"
   end
 
@@ -34,6 +33,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_172716) do
 
   create_table "users", force: :cascade do |t|
     t.string "name"
+    t.boolean "computer"
   end
 
 end

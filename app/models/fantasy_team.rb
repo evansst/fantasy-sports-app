@@ -6,4 +6,8 @@ class FantasyTeam < ActiveRecord::Base
   def draft_team sports_team
     self.sports_team = sports_team unless sports_team.fantasy_team_id
   end
+
+  def show_schedule
+    
+  end
 end

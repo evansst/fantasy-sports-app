@@ -1,9 +1,8 @@
 class Cli
 
 
-
     def start_game
-        font = TTY::Font.new(:3d)
+        # font = TTY::Font.new(:3)
         puts font.write("Ultamate Fantasy Football League!")
         puts "Please enter your name(s)"
         loop do
@@ -31,7 +30,7 @@ class Cli
     def draft_a_team user
         puts "Below are the are all the teams"
 
-        loop do 
+        loop do
           prompt = TTY::Prompt.new
           sports_team_names = SportsTeam.all.pluck(:name)
           user_team = prompt.select("select a team", sports_team_names)

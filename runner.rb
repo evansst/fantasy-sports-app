@@ -13,7 +13,7 @@ user = app.draft_a_team(user)
 
 fantasy_league.populate_league
 fantasy_league.seed_schedule
-7.times do 
+7.times do
   fantasy_league.play_weekly_games
   SportsTeam.shuffle_rank
 end

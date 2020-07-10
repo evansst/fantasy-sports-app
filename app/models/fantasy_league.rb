@@ -4,7 +4,7 @@ class FantasyLeague < ActiveRecord::Base
   has_many :users, through: :fantasy_teams
 
   SCHEDULE = [
-    [ ],
+    [],
     [[1, 8], [2, 7], [3, 6], [4, 5]],
     [[7, 1], [6, 8], [5, 2], [4, 3]],
     [[1, 6], [7, 5], [8, 4], [2, 3]],
@@ -15,9 +15,7 @@ class FantasyLeague < ActiveRecord::Base
   ]
 
   def add_fantasy_team user, fantasy_team_name
-    new_fantasy_team = user.create_fantasy_team(fantasy_team_name)
-    fantasy_teams << new_fantasy_team
-    new_fantasy_team
+    user.join_league(self, fantasy_team_name)
   end
 
   def self.list_all_leagues

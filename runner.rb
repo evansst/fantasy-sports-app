@@ -14,7 +14,7 @@ loop do
   when 'Join a League'
     app.join_a_league
   when 'See all of the teams'
-    puts 'Coming soon!'
+    app.show_the_league
   when 'Start the Draft'
     app.draft
   when 'Start a season'

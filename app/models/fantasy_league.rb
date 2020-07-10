@@ -30,7 +30,7 @@ class FantasyLeague < ActiveRecord::Base
     teams_needed = 8 - fantasy_teams.size
     teams_needed.times do
       new_user = User.create(name: Faker::FunnyName.name)
-      new_team = add_fantasy_team(new_user, Faker::Team.creature)
+      new_team = add_fantasy_team(new_user, Faker::Team.creature.capitalize)
       new_team.update(computer: true)
 
       loop do

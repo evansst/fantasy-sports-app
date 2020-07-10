@@ -31,6 +31,12 @@ class Cli
     end
   end
 
+  def show_the_league
+    @league.fantasy_teams.each do |team|
+      puts "#{team.name}: \n   #{SportsTeam.find_by(fantasy_team_id: team.id).name}"
+    end
+  end
+
   def create_user
     username = ''
     loop do
@@ -71,10 +77,11 @@ class Cli
     end
 
     @users.shuffle.each { |user| draft_a_team(user) }
-    puts 'The rest of the league will be pupulated by computer players'
+    puts 'The rest of the league will be populated by computer players'
     @league.populate_league
     @users = FantasyTeam.where(fantasy_league_id: @league.id)
     @drafted = true
+    show_the_league
   end
 
   def draft_a_team user

@@ -36,14 +36,6 @@ class Cli
     end
   end
 
-  def main_menu
-    PROMPT.select('Main Menu') do |menu|
-      menu.choice 'Create a User name'
-      menu.choice 'Log in'
-      menu.choice 'Exit'
-    end
-  end
-
   def launch_user_menu
     puts "Hello #{@user.name}!"
     loop do
@@ -57,7 +49,7 @@ class Cli
       end
     end
   end
-
+  
   def launch_league_menu
     puts "Welcome to #{@user_league.name}!"
     loop do 
@@ -77,6 +69,14 @@ class Cli
       when 'Exit to User Menu'
         launch_user_menu
       end
+    end
+  end
+  
+  def main_menu
+    PROMPT.select('Main Menu') do |menu|
+      menu.choice 'Create a User name'
+      menu.choice 'Log in'
+      menu.choice 'Exit'
     end
   end
 

@@ -34,6 +34,9 @@ To simulate a season:
      - Deletes all of the existing usernames and their fantasy teams.
    - Exit
      - Exits the application.
+
+    ![](Welcome_menu.gif)
+
 1. You must create a username before you can log in.
 1. After you create a username, you are taken to the User Menu.  From there you can:
    - Join a Fantasy League.
@@ -49,9 +52,16 @@ To simulate a season:
 
 ## App Features
 
-![] (Draft team.gif)
-
  - Join a Fantasy Football League with your friends.
+ - Draft your favorite NFL Team:
+
+      ![](Draft_team.gif)
+
  - Populate the rest of the league with 'computer' players (if you're short on friends)
+
+
  - Simulate one week at a time, with outcomes determined by NFL rankings that are shuffled every week
- - 
+
+      ![](League_menu.gif)
+ 
+ - Check the current standings of your Fantasy League

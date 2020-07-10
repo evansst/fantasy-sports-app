@@ -250,9 +250,15 @@ class Cli
 
   def show_standings
     @user_league.reload
+    table = TTY::Table.new
+    table << ['Rank','Team','Wins']
+
     @user_league.standings.reduce(1) do |rank, team|
-      puts "#{rank}: #{team[0]} - #{team[1]} wins"
+      # puts "#{rank}: #{team[0]} - #{team[1]} wins"
+      table << [rank, team[0], team[1]]
       rank + 1
     end
+    puts table
   end
 end
+

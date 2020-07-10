@@ -3,31 +3,25 @@ require_relative 'config/environment'
 
 app = Cli.new
 
-fantasy_league = FantasyLeague.find_by(name: "League 1")
+fantasy_league = FantasyLeague.find_by(name: "The One and Only")
 
-user = app.start_game
+app.welcome
 
-user = app.select_a_league(user)
-
-user = app.draft_a_team(user)
-
-fantasy_league.populate_league
-fantasy_league.seed_schedule
-7.times do
-  fantasy_league.play_weekly_games
-  SportsTeam.shuffle_rank
+loop do
+  case app.main_menu
+  when 'Create a User name'
+    app.create_user
+  when 'Join a League'
+    app.join_a_league
+  when 'Start the Draft'
+    app.draft_a_team
+  when 'Start a season'
+    puts 'Coming soon!'
+  when 'Check the Standings'
+    puts 'Coming soon!'
+  when 'Go to next week'
+    puts 'Coming soon!'
+  when 'Exit'
+    break
+  end
 end
-
-puts fantasy_league.standings
-
-
-# app.game_options
-
-# app.play_game
-
-# app.view_record
-#puts name = gets.strip
-#puts "Welcome #{name}"
-
-#puts team = gets.Sports_teams
-#puts "#{name} has selected #{team}"

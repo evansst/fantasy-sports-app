@@ -1,25 +1,26 @@
 class Cli
-  attr_accessor :users, :drafted, :user, :user_league
+  attr_accessor  :drafted, :user, :user_league
   def initialize
-    @users = []
     load_users
   end
 
   PROMPT = TTY::Prompt.new
 
   def load_users
-    User.all.each do |user|
-      @users << user
-    end
+    User.all
   end
 
   def welcome
+    banner
+    launch_main_menu
+  end
+
+  def banner
     font = TTY::Font.new(:standard)
     puts font.write('Ultamate')
     puts font.write('Fantasy')
     puts font.write('Football')
     puts font.write('League!')
-    launch_main_menu
   end
 
   def launch_main_menu
@@ -29,6 +30,8 @@ class Cli
         create_user
       when 'Log in'
         log_in
+      when 'Delete Everything'
+        delete_everything
       when 'Exit'
         puts 'Good Bye!'
         exit
@@ -52,17 +55,15 @@ class Cli
   
   def launch_league_menu
     puts "Welcome to #{@user_league.name}!"
-    loop do 
+    loop do
       case league_menu
       when 'See all of the teams'
         show_the_league
       when 'Start the Draft'
         draft
-      # when 'Start a season'
-      #   start_the_season
       when 'Check the Standings'
         show_standings
-      when 'Go to next week'
+      when 'Play games'
         weekly_games
       when 'Finish the Season'
         finish_season
@@ -76,6 +77,7 @@ class Cli
     PROMPT.select('Main Menu') do |menu|
       menu.choice 'Create a User name'
       menu.choice 'Log in'
+      menu.choice 'Delete Everything'
       menu.choice 'Exit'
     end
   end
@@ -91,16 +93,31 @@ class Cli
   def league_menu
     PROMPT.select('League Menu') do |menu|
       menu.choice 'See all of the teams'
-      menu.choice 'Start the Draft'
-      # menu.choice 'Start a season'
+      menu.choice 'Start the Draft' unless @user_league.drafted
       menu.choice 'Check the Standings'
-      menu.choice 'Go to next week'
+      menu.choice 'Play games'
       menu.choice 'Finish the Season'
       menu.choice 'Exit to User Menu'
     end
   end
 
+  def delete_everything
+    unless PROMPT.yes?("Are you sure you want to do this?  It cannot be undone.")
+      return puts "Okay, come back when you're ready."
+    end
+
+    FantasyLeague.delete_all
+    User.delete_all
+    FantasyTeam.delete_all
+    
+    FantasyLeague.create(name: "League 1")
+    FantasyLeague.create(name: "League 2")
+    FantasyLeague.create(name: "League 3")
+    puts 'Everything Fantasy Team and User has been deleted, and the Leagues have been reset'
+  end
+
   def show_the_league
+    @user_league.reload
     if @user_league.drafted
       @user_league.fantasy_teams.each do |team|
         puts "#{team.name}: \n   #{team.sports_team.name}"
@@ -122,17 +139,20 @@ class Cli
       break unless user
     end
     @user = User.create(name: username)
-    @users << @user
     launch_user_menu
   end
 
   def log_in
+    load_users
     @user = choose_a_user
+    return puts 'Please create a user first!' unless @user
+
     launch_user_menu
   end
 
   def choose_a_user
-    return nil if @users.empty?
+    binding.pry
+    return nil if User.all.empty?
 
     users = User.where(computer: nil).pluck(:name)
     user = PROMPT.select('Which user?', users)
@@ -163,7 +183,7 @@ class Cli
 
   def draft
     return puts 'You have already drafted!' if @user_league.drafted
-    unless PROMPT.yes?("Are you sure you're ready to draft? This cannon be undone")
+    unless PROMPT.yes?("Are you sure you're ready to draft? This cannot be undone")
       return puts "Okay, come back when you're ready."
     end
 

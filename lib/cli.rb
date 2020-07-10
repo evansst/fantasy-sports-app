@@ -16,21 +16,27 @@ class Cli
   end
 
   def banner
+    system "clear"
     font = TTY::Font.new(:standard)
     puts font.write('Ultamate')
     puts font.write('Fantasy')
     puts font.write('Football')
     puts font.write('League!')
+    puts "Logged in as: #{@user.name}" if @user
   end
 
   def launch_main_menu
+    banner
     loop do
       case main_menu
       when 'Create a User name'
+        banner
         create_user
       when 'Log in'
+        banner
         log_in
       when 'Delete Everything'
+        banner
         delete_everything
       when 'Exit'
         puts 'Good Bye!'
@@ -40,34 +46,45 @@ class Cli
   end
 
   def launch_user_menu
+    banner
     puts "Hello #{@user.name}!"
     loop do
       case user_menu
       when 'Join a League'
+        banner
         join_a_league
       when 'Select a League'
+        banner
         select_a_league
       when 'Exit to Main Menu'
+        banner
         launch_main_menu
       end
     end
   end
   
   def launch_league_menu
+    banner
     puts "Welcome to #{@user_league.name}!"
     loop do
       case league_menu
       when 'See all of the teams'
+        banner
         show_the_league
       when 'Start the Draft'
+        banner
         draft
       when 'Check the Standings'
+        banner
         show_standings
       when 'Play games'
+        banner
         weekly_games
       when 'Finish the Season'
+        banner
         finish_season
       when 'Exit to User Menu'
+        banner
         launch_user_menu
       end
     end
@@ -151,7 +168,7 @@ class Cli
   end
 
   def choose_a_user
-    binding.pry
+
     return nil if User.all.empty?
 
     users = User.where(computer: nil).pluck(:name)
@@ -220,6 +237,7 @@ class Cli
     return puts 'You must start the season!' unless @user_league.week
 
     SportsTeam.shuffle_rank
+    puts "Week: #{@user_league.week}"
     @user_league.play_weekly_games
   end
 

@@ -65,3 +65,16 @@ To simulate a season:
       ![](League_menu.gif)
  
  - Check the current standings of your Fantasy League
+
+To do:
+
+  - Refactor!
+  - Declare a winner of the Fantasy League
+  - Let users create their own leagues.
+
+  - Add API to pull in real NFL stats for teams and players
+  - Build fantasy draft functions for NFL players
+
+## Contact
+  
+  Created by [Sam Evans](https://linkedin.com/in/evansst) and [Daniel Madera](https://linkedin.com/in/daniel-madera-925b4987)

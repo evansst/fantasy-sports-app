@@ -58,8 +58,8 @@ class Cli
         show_the_league
       when 'Start the Draft'
         draft
-      when 'Start a season'
-        start_the_season
+      # when 'Start a season'
+      #   start_the_season
       when 'Check the Standings'
         show_standings
       when 'Go to next week'
@@ -92,7 +92,7 @@ class Cli
     PROMPT.select('League Menu') do |menu|
       menu.choice 'See all of the teams'
       menu.choice 'Start the Draft'
-      menu.choice 'Start a season'
+      # menu.choice 'Start a season'
       menu.choice 'Check the Standings'
       menu.choice 'Go to next week'
       menu.choice 'Finish the Season'
@@ -101,8 +101,14 @@ class Cli
   end
 
   def show_the_league
-    @user_league.fantasy_teams.each do |team|
-      puts "#{team.name}: \n   #{team.sports_team.name}"
+    if @user_league.drafted
+      @user_league.fantasy_teams.each do |team|
+        puts "#{team.name}: \n   #{team.sports_team.name}"
+      end
+    else
+      @user_league.fantasy_teams.each do |team|
+        puts "#{team.name}"
+      end
     end
   end
 
@@ -165,6 +171,8 @@ class Cli
     puts 'The rest of the league will be populated by computer players'
     @user_league.populate_league
     @user_league.drafted = true
+    @user_league.seed_schedule
+    @user_league.reload
     show_the_league
   end
 
@@ -188,6 +196,7 @@ class Cli
   end
 
   def weekly_games
+    @user_league.reload
     return puts 'The season is over!' if @user_league.week == 8
     return puts 'You must start the season!' unless @user_league.week
 
@@ -196,12 +205,14 @@ class Cli
   end
 
   def finish_season
+    @user_league.reload
     while weekly_games
       weekly_games
     end
   end
 
   def show_standings
+    @user_league.reload
     @user_league.standings.reduce(1) do |rank, team|
       puts "#{rank}: #{team[0]} - #{team[1]} wins"
       rank + 1
